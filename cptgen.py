@@ -5,6 +5,8 @@ import shutil;
 import subprocess
 
 target = sys.argv[1]
+if target.startswith("testcase_"):
+    target = target[9:]
 
 ftestcase = open("testcase_" + target + ".txt")
 line = ftestcase.readline()
@@ -60,6 +62,10 @@ fconvertedscript = open(subdir + "/test_" + target + ".cpp", "w")
 fconvertedscript.write(convertedscript)
 fconvertedscript.close()
 
-cmd = "cd " + subdir + " && g++ --std=c++20 test_" + target + ".cpp " + target + ".cpp -DCPTEST -lgtest_main -lgtest && ./a.out"
+exefile = "./a.out"
+if sys.platform == "win32":
+    exefile = ".\\a.exe"
+
+cmd = "cd " + subdir + " && g++ --std=c++20 test_" + target + ".cpp " + target + ".cpp -DCPTEST -lgtest_main -lgtest && " + exefile
 #print(cmd)
 subprocess.run(cmd, shell=True)

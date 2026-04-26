@@ -10,7 +10,12 @@
             "args":[
                 "cptgen.py",
                 "${fileBasenameNoExtension}"
-            ]
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
