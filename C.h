@@ -2,5 +2,6 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
 
-std::string Impl_C(const std::vector<std::string> &inputs);
+std::string Impl_C(std::istream &inputs);

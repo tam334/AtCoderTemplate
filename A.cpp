@@ -30,10 +30,10 @@ bool isDebugPrintOn = true;
 
 //ユーティリティ
 //1行読み取り
-string readLine()
+string readLine(istream& in)
 {
     string buf;
-    getline(std::cin, buf);
+    getline(in, buf);
     return buf;
 }
 
@@ -60,7 +60,7 @@ string Join(strVec sv, string separator)
 }
 
 //文字列をスペース区切りでintの配列に分解
-intVec splitI(const string& org, ll size = -1)
+intVec innerSplitI(const string& org, ll size = -1)
 {
     intVec dst;
     if(size > 0)
@@ -78,9 +78,13 @@ intVec splitI(const string& org, ll size = -1)
     } while(sp != string::npos);
     return dst;
 }
+intVec splitI(istream& in, ll size = -1)
+{
+    return innerSplitI(readLine(in), size);
+}
 
 //文字列をスペース区切りでstringに分解
-void splitS(const string& org, strVec& dst)
+void innerSplitS(const string& org, strVec& dst)
 {
     ll ofs = 0;
     size_t sp = 0;
@@ -90,6 +94,10 @@ void splitS(const string& org, strVec& dst)
         dst.push_back(org.substr(ofs, sp - ofs));
         ofs = sp + 1;
     } while(sp != string::npos);
+}
+void splitS(istream& in, strVec& dst)
+{
+    innerSplitS(readLine(in), dst);
 }
 
 //テスト実行用デバッグ出力
@@ -130,18 +138,19 @@ void DebugPrint(const strVec& sv)
     }
 }
 
-string Impl_A(const vector<string> &inputs)
+string Impl_A(istream& inputs)
 {
     // show me your moves!
-    return inputs[0] + "\n";
+    ll ans = 0;
+    intVec iv = splitI(inputs);
+    ans = iv[1];
+    return str(ans) + "\n";
 }
 
 #ifndef CPTEST
 int main(int, char**)
 {
     isDebugPrintOn = false;
-    vector<string> inputs;
-    inputs.push_back(readLine());
-    cout << Impl_A(inputs);
+    cout << Impl_A(cin);
 }
 #endif

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 struct ABCParams
 {
@@ -58,7 +59,14 @@ TEST_P(MyTest, Sub)
             output += buf + "\n";
         }
     }
-    EXPECT_EQ(Impl_{@insert target_module}(inputs), output);
+    
+    std::string streamBuf;
+    for(std::string s: inputs)
+    {
+        streamBuf += s + "\n";
+    }
+    std::istringstream sin(streamBuf);
+    EXPECT_EQ(Impl_{@insert target_module}(sin), output);
 }
 
 {@insert parameters}
