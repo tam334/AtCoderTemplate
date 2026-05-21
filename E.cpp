@@ -36,6 +36,10 @@ string readLine(istream& in)
     getline(in, buf);
     return buf;
 }
+ll num(istream &in)
+{
+    return num(readLine(in));
+}
 
 //文字列結合
 string Join(intVec iv, string separator)
@@ -142,8 +146,6 @@ string Impl_E(istream& inputs)
 {
     // show me your moves!
     ll ans = 0;
-    intVec iv = splitI(inputs);
-    ans = iv[1];
     return str(ans) + "\n";
 }
 
