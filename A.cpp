@@ -1,6 +1,7 @@
 #ifdef CPTEST
 #include "A.h"
 #endif
+#include <atcoder/all>
 #include <iostream>
 #include <set>
 #include <vector>

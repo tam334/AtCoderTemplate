@@ -66,6 +66,6 @@ exefile = "./a.out"
 if sys.platform == "win32":
     exefile = ".\\a.exe"
 
-cmd = "cd " + subdir + " && g++ --std=c++20 test_" + target + ".cpp " + target + ".cpp -DCPTEST -lgtest_main -lgtest && " + exefile
+cmd = "cd " + subdir + " && g++ --std=c++20 -I..\\..\\ac-library\\ test_" + target + ".cpp " + target + ".cpp -DCPTEST -lgtest_main -lgtest && " + exefile
 #print(cmd)
 subprocess.run(cmd, shell=True)
